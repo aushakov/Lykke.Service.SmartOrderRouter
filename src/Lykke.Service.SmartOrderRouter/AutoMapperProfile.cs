@@ -37,7 +37,10 @@ namespace Lykke.Service.SmartOrderRouter
             CreateMap<ExternalOrderBook, ExternalOrderBookModel>(MemberList.Source);
             CreateMap<ExternalOrderBookLevel, ExternalOrderBookLevelModel>(MemberList.Source);
 
-            CreateMap<Quote, QuoteModel>(MemberList.Source);
+            CreateMap<Quote, QuoteModel>(MemberList.Source)
+                .ForSourceMember(src => src.Time, opt => opt.DoNotValidate())
+                .ForSourceMember(src => src.Mid, opt => opt.DoNotValidate())
+                .ForSourceMember(src => src.Spread, opt => opt.DoNotValidate());
 
             CreateMap<BalanceReport, BalanceReportModel>(MemberList.Source);
             CreateMap<BalanceReportItem, BalanceReportItemModel>(MemberList.Source);
